@@ -5,83 +5,43 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>Lero Lero</title>
 		<script src="position_absolute/pa.js"></script>
-		<script src="position_absolute/pa_menu.js"></script>
 		<script src="jquery-3.0.0.min.js"></script>
-		<script type="text/javascript">
-			var __EMMETT_FADE_TIME = 1000;
-			function emmett_fade_in(inend) {
-				$('body').animate({opacity:1}, __EMMETT_FADE_TIME, function () {
-					if (inend) {
-						inend();
-					}
-				});
-			}
-			function emmett_fade_out(inend) {
-				$('body').animate({opacity:0}, __EMMETT_FADE_TIME, function () {
-					if (inend) {
-						inend();
-					}
-				});
-			}
-		</script>
-		<link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
-		<style type="text/css">
-			* {
-				font-family: Roboto;
-				color: #333;
-			}
-			body {
-				background-color: #ecf0f1;
-				overflow: hidden;
-				opacity: 0;
-			}
-			.pa-menu-item {
-				padding: 35px;
-			}
-
-			.pa-menu-item:hover {
-				background-color: #333;
-			}
-
-			.pa-menu-item:hover span {
-				color: white;
-			}
-
-			.pa-menu-item:active {
-				background-color: #111;
-			}
-
-			.pa-menu-item-desc {
-				color: #555;
-			}
-			a {
-				text-decoration: none;
-				outline: 0;
-				color: #ffffff;
-			}
-		</style>
+		<script type="text/javascript" src="main.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
-	<body>
-		<div id="title" class="pa pa_left_0 pa_top_0 pa_width_1 pa_height_0.2">
+	<body class="not-selectable">
+		<div id="title" class="pa pa_left_0 pa_top_0 pa_width_1 pa_height_0.15">
 			<span class="pa pa_centerVertical_1 pa_centerHorizontal_1 pa_fontSize_0.3">
 				Lero Lero
 			</span>
 		</div>
-		<div class="pa pa_top_0.2 pa_left_0 pa_width_1 pa_height_0.8" id="config">
-			<!-- CONFIG -->
+
+		<div class="pa pa_top_0.15 pa_left_0 pa_width_1 pa_height_0.7" id="config">
+			<!-- CLASSICO -->
+			<a href="classico.html" class="pa pa_top_0 pa_left_0 pa_width_1 pa_height_0.2 pa-menu-item">
+				<span class="pa pa_left_0.1 pa_centerVertical_1 pa_fontSize_0.2 pa-menu-item-desc">Clássico</span>
+			</a>
+			<!-- FILOSOFIA -->
+			<a href="filosofia.html" class="pa pa_top_0.2 pa_left_0 pa_width_1 pa_height_0.2 pa-menu-item">
+				<span class="pa pa_left_0.1 pa_centerVertical_1 pa_fontSize_0.2 pa-menu-item-desc">Filosofia</span>
+			</a>
+			<!-- MEDICINA -->
+			<a href="javascript:void(0)" class="pa pa_top_0.4 pa_left_0 pa_width_1 pa_height_0.2 pa-menu-item">
+				<span class="pa pa_left_0.1 pa_centerVertical_1 pa_fontSize_0.2 pa-menu-item-desc">Medicina</span>
+			</a>
+			<!-- MATEMATICA -->
+			<a href="javascript:void(0)" class="pa pa_top_0.6 pa_left_0 pa_width_1 pa_height_0.2 pa-menu-item">
+				<span class="pa pa_left_0.1 pa_centerVertical_1 pa_fontSize_0.2 pa-menu-item-desc">Matemática</span>
+			</a>
+			<!-- CIENCIA DA COMPUTACAO -->
+			<a href="javascript:void(0)" class="pa pa_top_0.8 pa_left_0 pa_width_1 pa_height_0.2 pa-menu-item">
+				<span class="pa pa_left_0.1 pa_centerVertical_1 pa_fontSize_0.2 pa-menu-item-desc">Ciência da Computação</span>
+			</a>
 		</div>
 
 		<script type="text/javascript">
 			pa_start();
-			function _default_handler(event) {
-				console.log(this, event);
-			}
-			pa_menu_add_item('config', 'Filosofia', ' ', _default_handler);
-			pa_menu_add_item('config', 'Lógica', ' ', _default_handler);
-			pa_menu_add_item('config', 'Matemática', ' ', _default_handler);
-	        pa_menu_add_item('config', 'Medicina', ' ', _default_handler);
-
-	        emmett_fade_in();
+			pa_fade_in();
 		</script>
 	</body>
 </html>
