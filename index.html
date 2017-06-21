@@ -1,47 +1,99 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>Page Title</title>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<title>Lero Lero</title>
-		<script src="position_absolute/pa.js"></script>
-		<script src="jquery-3.0.0.min.js"></script>
-		<script type="text/javascript" src="main.js"></script>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<style type="text/css">
+			.ui-li-static.ui-collapsible > .ui-collapsible-heading {
+				margin: 0;
+			}
+			.ui-li-static.ui-collapsible {
+				padding: 0;
+			}
+			.ui-li-static.ui-collapsible > .ui-collapsible-heading > .ui-btn {
+				border-top-width: 0;
+			}
+			.ui-li-static.ui-collapsible > .ui-collapsible-heading.ui-collapsible-heading-collapsed > .ui-btn,
+			.ui-li-static.ui-collapsible > .ui-collapsible-content {
+				border-bottom-width: 0;
+			}
+		</style>
 	</head>
-	<body class="not-selectable">
-		<div id="title" class="pa pa_left_0 pa_top_0 pa_width_1 pa_height_0.15">
-			<span class="pa pa_centerVertical_1 pa_centerHorizontal_1 pa_fontSize_0.3">
-				Lero Lero
-			</span>
-		</div>
+	<body>
+		<div data-role="page" id="menu">
+			<div data-role="popup" id="popup-dialog" data-overlay-theme="a" data-theme="a" data-dismissible="false" style="max-width:400px;">
+				<div data-role="header" data-theme="a">
+					<h1>Frases</h1>
+				</div>
+				<div role="main" class="ui-content">
+					<!-- <p> <a href="#">Baixe a versão completa do aplicativo para obter mais opções</a></p> -->
+					<h3 class="ui-title">Selecione a quantidade de frases que serão geradas</h3>
+					<ul data-role="listview" data-inset="true">
+						<li><a href="#">3 frases</a></li>
+						<li><a href="#">5 frases</a></li>
+						<li><a href="#">8 frases</a></li>
+					</ul>
+					<a href="#" class="ui-btn" data-rel="back">cancelar</a>
+					<a href="#" class="ui-btn" data-rel="back">obter versão completa</a>
+				</div>
+			</div>
 
-		<div class="pa pa_top_0.15 pa_left_0 pa_width_1 pa_height_0.7" id="config">
-			<!-- CLASSICO -->
-			<a href="classico.html" class="pa pa_top_0 pa_left_0 pa_width_1 pa_height_0.2 pa-menu-item">
-				<span class="pa pa_left_0.1 pa_centerVertical_1 pa_fontSize_0.2 pa-menu-item-desc">Clássico</span>
-			</a>
-			<!-- FILOSOFIA -->
-			<a href="filosofia.html" class="pa pa_top_0.2 pa_left_0 pa_width_1 pa_height_0.2 pa-menu-item">
-				<span class="pa pa_left_0.1 pa_centerVertical_1 pa_fontSize_0.2 pa-menu-item-desc">Filosofia</span>
-			</a>
-			<!-- MEDICINA -->
-			<a href="javascript:void(0)" class="pa pa_top_0.4 pa_left_0 pa_width_1 pa_height_0.2 pa-menu-item">
-				<span class="pa pa_left_0.1 pa_centerVertical_1 pa_fontSize_0.2 pa-menu-item-desc">Medicina</span>
-			</a>
-			<!-- MATEMATICA -->
-			<a href="javascript:void(0)" class="pa pa_top_0.6 pa_left_0 pa_width_1 pa_height_0.2 pa-menu-item">
-				<span class="pa pa_left_0.1 pa_centerVertical_1 pa_fontSize_0.2 pa-menu-item-desc">Matemática</span>
-			</a>
-			<!-- CIENCIA DA COMPUTACAO -->
-			<a href="javascript:void(0)" class="pa pa_top_0.8 pa_left_0 pa_width_1 pa_height_0.2 pa-menu-item">
-				<span class="pa pa_left_0.1 pa_centerVertical_1 pa_fontSize_0.2 pa-menu-item-desc">Ciência da Computação</span>
-			</a>
-		</div>
+			<div data-role="header" data-position="fixed">
+				<h1>Lero Lero</h1>
+			</div><!-- /header -->
 
-		<script type="text/javascript">
-			pa_start();
-			pa_fade_in();
-		</script>
+			<div role="main" class="ui-content">
+				<p>
+					<ul data-role="listview" data-inset="true">
+						<li>
+							<a href="#">
+								<img src="negocios.jpg">
+								<h2>Versão clássica</h2>
+								<p>Gestão e Negócios</p>
+							</a>
+						</li>
+						<li>
+							<a href="#popup-dialog" data-rel="popup" data-position-to="window" data-transition="pop">
+								<img src="kant.jpg">
+								<h2>Filosofia</h2>
+								<p>metafísica, psicologia, estruturalismo...</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="matematica.jpg">
+								<h2>Matemática</h2>
+								<p>Integrais, diferenciais, gradientes, análise</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="medicina.jpg">
+								<h2>Medicina</h2>
+								<p>Microbiologia, histologia, bacteriologia</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="logica.jpg">
+								<h2>Lógica</h2>
+								<p>Inferências, lógicas não convencionais</p>
+							</a>
+						</li>
+					</ul>
+				</p>
+			</div><!-- /content -->
+		</div><!-- /page -->
+
+		<div data-role="page" id="page-2">
+			<div data-role="header" data-position="fixed">
+				<h1>Pagina 2</h1>
+			</div><!-- /header -->
+		</div>
 	</body>
 </html>
