@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<script src="dicionario_filosofia.js"></script>
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		<style type="text/css">
@@ -23,6 +24,53 @@
 				border-bottom-width: 0;
 			}
 		</style>
+		<script type="text/javascript">
+			var CLASSIC = 'Clássico';
+			var FILOSOPHY = 'Filosofia';
+			var MATH = 'Matemática';
+			var MEDICINE = 'Medicina';
+			var LOGICS = 'Lógica';
+
+			window.TYPE_SELECTED = null;
+			window.PHRASES_SIZE = null;
+
+			function choice(items) {
+				return items[Math.floor(Math.random()*items.length)];
+			}
+
+			function get_dictionary() {
+				if (window.TYPE_SELECTED == FILOSOPHY) {
+					return dicionario_filosofia;
+				}
+			}
+
+			function select_type(type) {
+				window.TYPE_SELECTED = type;
+			}
+
+			function select_phrases_size(size) {
+				window.PHRASES_SIZE = size;
+				$('#content-title').text(window.TYPE_SELECTED);
+				$.mobile.changePage($('#page-content'));
+				$.mobile.loading( "show", {
+					text: "gerando lero lero...",
+					textVisible: true,
+					theme: "z",
+					html: ""
+				});
+				setTimeout(function() {
+					var dict = get_dictionary();
+					if (dict) {
+						$('#article-title').text(choice(dict.substantivos));
+						$('#article-content').text('And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black ');
+						$.mobile.loading('hide');
+					}
+					else {
+						$.mobile.loading('hide');
+					}
+				}, 200);
+			}
+		</script>
 	</head>
 	<body>
 		<div data-role="page" id="menu">
@@ -34,9 +82,9 @@
 					<!-- <p> <a href="#">Baixe a versão completa do aplicativo para obter mais opções</a></p> -->
 					<h3 class="ui-title">Selecione a quantidade de frases que serão geradas</h3>
 					<ul data-role="listview" data-inset="true">
-						<li><a href="#">3 frases</a></li>
-						<li><a href="#">5 frases</a></li>
-						<li><a href="#">8 frases</a></li>
+						<li><a href="#" onclick="select_phrases_size(3)">3 frases</a></li>
+						<li><a href="#" onclick="select_phrases_size(5)">5 frases</a></li>
+						<li><a href="#" onclick="select_phrases_size(8)">8 frases</a></li>
 					</ul>
 					<a href="#" class="ui-btn" data-rel="back">cancelar</a>
 					<a href="#" class="ui-btn" data-rel="back">obter versão completa</a>
@@ -51,35 +99,35 @@
 				<p>
 					<ul data-role="listview" data-inset="true">
 						<li>
-							<a href="#">
+							<a href="#popup-dialog" onclick="select_type(CLASSIC)" data-rel="popup" data-position-to="window" data-transition="pop">
 								<img src="negocios.jpg">
 								<h2>Versão clássica</h2>
 								<p>Gestão e Negócios</p>
 							</a>
 						</li>
 						<li>
-							<a href="#popup-dialog" data-rel="popup" data-position-to="window" data-transition="pop">
+							<a href="#popup-dialog" onclick="select_type(FILOSOPHY)" data-rel="popup" data-position-to="window" data-transition="pop">
 								<img src="kant.jpg">
 								<h2>Filosofia</h2>
 								<p>metafísica, psicologia, estruturalismo...</p>
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="#popup-dialog" onclick="select_type(MATH)" data-rel="popup" data-position-to="window" data-transition="pop">
 								<img src="matematica.jpg">
 								<h2>Matemática</h2>
 								<p>Integrais, diferenciais, gradientes, análise</p>
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="#popup-dialog" onclick="select_type(MEDICINE)" data-rel="popup" data-position-to="window" data-transition="pop">
 								<img src="medicina.jpg">
 								<h2>Medicina</h2>
 								<p>Microbiologia, histologia, bacteriologia</p>
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="#popup-dialog" onclick="select_type(LOGICS)" data-rel="popup" data-position-to="window" data-transition="pop">
 								<img src="logica.jpg">
 								<h2>Lógica</h2>
 								<p>Inferências, lógicas não convencionais</p>
@@ -90,10 +138,16 @@
 			</div><!-- /content -->
 		</div><!-- /page -->
 
-		<div data-role="page" id="page-2">
+		<div data-role="page" id="page-content">
 			<div data-role="header" data-position="fixed">
-				<h1>Pagina 2</h1>
+				<h1 id="content-title"></h1>
 			</div><!-- /header -->
+			<div role="main" class="ui-content">
+				<p>
+					<h1 style="text-align: center;" id="article-title"></h1>
+					<div id="article-content"></div>
+				</p>
+			</div>
 		</div>
 	</body>
 </html>
