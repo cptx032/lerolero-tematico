@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Page Title</title>
+		<title>Gerador de Lero Lero</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-		<script src="dicionario_filosofia.js"></script>
-		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<script src="js/dicionario_filosofia.js"></script>
+		<script src="js/medicina.js"></script>
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
 		<style type="text/css">
 			.ui-li-static.ui-collapsible > .ui-collapsible-heading {
 				margin: 0;
@@ -22,6 +23,9 @@
 			.ui-li-static.ui-collapsible > .ui-collapsible-heading.ui-collapsible-heading-collapsed > .ui-btn,
 			.ui-li-static.ui-collapsible > .ui-collapsible-content {
 				border-bottom-width: 0;
+			}
+			#article-content {
+				text-align: justify;
 			}
 		</style>
 		<script type="text/javascript">
@@ -42,10 +46,30 @@
 				if (window.TYPE_SELECTED == FILOSOPHY) {
 					return dicionario_filosofia;
 				}
+				else if (window.TYPE_SELECTED == MEDICINE) {
+					return dicionario_medicina;
+				}
 			}
 
 			function select_type(type) {
 				window.TYPE_SELECTED = type;
+			}
+
+			function capitalize_first_letter(string) {
+				return string.charAt(0).toUpperCase() + string.slice(1);
+			}
+
+			function generate_phrase(random_conjunction, dict) {
+				var conjunction = false;
+				if (random_conjunction) {
+					conjunction = choice([false, true]);
+				}
+				var phrase = '';
+				if (conjunction) {
+					phrase += choice(dict.conjuncoes);
+				}
+				phrase += choice(dict.substantivos) + choice(dict.verbos) + choice(dict.complementos);
+				return capitalize_first_letter(phrase) + ' ';
 			}
 
 			function select_phrases_size(size) {
@@ -61,8 +85,12 @@
 				setTimeout(function() {
 					var dict = get_dictionary();
 					if (dict) {
-						$('#article-title').text(choice(dict.substantivos));
-						$('#article-content').text('And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black And the sky turns to black ');
+						$('#article-title').text(capitalize_first_letter(choice(dict.substantivos)));
+						var content = generate_phrase(false, dict);
+						for (var i=0; i < window.PHRASES_SIZE; i++) {
+							content += generate_phrase(true, dict) + ' ';
+						}
+						$('#article-content').text(content);
 						$.mobile.loading('hide');
 					}
 					else {
@@ -79,12 +107,11 @@
 					<h1>Frases</h1>
 				</div>
 				<div role="main" class="ui-content">
-					<!-- <p> <a href="#">Baixe a versão completa do aplicativo para obter mais opções</a></p> -->
 					<h3 class="ui-title">Selecione a quantidade de frases que serão geradas</h3>
 					<ul data-role="listview" data-inset="true">
 						<li><a href="#" onclick="select_phrases_size(3)">3 frases</a></li>
 						<li><a href="#" onclick="select_phrases_size(5)">5 frases</a></li>
-						<li><a href="#" onclick="select_phrases_size(8)">8 frases</a></li>
+						<li><a href="#" onclick="select_phrases_size(30)">8 frases</a></li>
 					</ul>
 					<a href="#" class="ui-btn" data-rel="back">cancelar</a>
 					<a href="#" class="ui-btn" data-rel="back">obter versão completa</a>
@@ -140,6 +167,9 @@
 
 		<div data-role="page" id="page-content">
 			<div data-role="header" data-position="fixed">
+				<a href="#menu" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-carat-l">
+					Voltar
+				</a>
 				<h1 id="content-title"></h1>
 			</div><!-- /header -->
 			<div role="main" class="ui-content">
