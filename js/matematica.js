@@ -10,7 +10,7 @@ var dicionario_matematica = {
 		"No entanto, não podemos esquecer que ",
 		"Do mesmo modo, ",
 		"Da mesma maneira que ",
-		"Nunca é demais lembrar o peso e o significado destes problemas, uma vez que ",
+		"Esses problemas são importantes uma vez que ",
 		"Uma construção difusa ∇²φ é polinomial se e se somente se ",
 		"Acima de tudo, é fundamental ressaltar que ",
 		"É possível perceber então que ",
